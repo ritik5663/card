@@ -1,0 +1,671 @@
+{
+	"info": {
+		"_postman_id": "card-microservice-api",
+		"name": "Card Microservice API",
+		"description": "Complete API collection for Card Management Microservice running on port 8081",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Card Operations",
+			"item": [
+				{
+					"name": "Create Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"1234567890123456\",\n  \"cardholderName\": \"John Doe\",\n  \"expiryDate\": \"12/25\",\n  \"cvv\": \"123\",\n  \"cardType\": \"CREDIT\",\n  \"creditLimit\": 5000.0,\n  \"currentBalance\": 0.0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Create a new payment card with validation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Retrieve all cards in the system"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Card by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1"
+							]
+						},
+						"description": "Retrieve a specific card by its ID"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Card by Number",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/number/1234567890123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"number",
+								"1234567890123456"
+							]
+						},
+						"description": "Retrieve a card by its card number"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Card",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"1234567890123456\",\n  \"cardholderName\": \"John Updated\",\n  \"expiryDate\": \"12/25\",\n  \"cvv\": \"123\",\n  \"cardType\": \"CREDIT\",\n  \"creditLimit\": 6000.0,\n  \"currentBalance\": 500.0,\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1"
+							]
+						},
+						"description": "Update card details completely"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1"
+							]
+						},
+						"description": "Permanently delete a card"
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Card",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1/deactivate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1",
+								"deactivate"
+							]
+						},
+						"description": "Soft delete by deactivating a card"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Search & Filter",
+			"item": [
+				{
+					"name": "Get Cards by Cardholder Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/cardholder/John",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"cardholder",
+								"John"
+							]
+						},
+						"description": "Search cards by cardholder name (case-insensitive)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cards by Type - Credit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/type/CREDIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"type",
+								"CREDIT"
+							]
+						},
+						"description": "Get all credit cards"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cards by Type - Debit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/type/DEBIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"type",
+								"DEBIT"
+							]
+						},
+						"description": "Get all debit cards"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/active",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"active"
+							]
+						},
+						"description": "Get all active cards"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Inactive Cards",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/inactive",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"inactive"
+							]
+						},
+						"description": "Get all inactive cards"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active Cards by Cardholder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/active/cardholder/John",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"active",
+								"cardholder",
+								"John"
+							]
+						},
+						"description": "Get active cards for specific cardholder"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active Cards by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/active/type/CREDIT",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"active",
+								"type",
+								"CREDIT"
+							]
+						},
+						"description": "Get active cards by type"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Utility Operations",
+			"item": [
+				{
+					"name": "Update Card Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1/status?isActive=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1",
+								"status"
+							],
+							"query": [
+								{
+									"key": "isActive",
+									"value": "false"
+								}
+							]
+						},
+						"description": "Update card activation status"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Card Balance",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/1/balance?newBalance=1500.50",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"1",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "newBalance",
+									"value": "1500.50"
+								}
+							]
+						},
+						"description": "Update card balance (validates against credit limit)"
+					},
+					"response": []
+				},
+				{
+					"name": "Check if Card is Active",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/check/1234567890123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"check",
+								"1234567890123456"
+							]
+						},
+						"description": "Check if a card is currently active"
+					},
+					"response": []
+				},
+				{
+					"name": "Count Active Cards for Cardholder",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/count/John%20Doe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"count",
+								"John Doe"
+							]
+						},
+						"description": "Count active cards for a specific cardholder"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Test Data Setup",
+			"item": [
+				{
+					"name": "Create Credit Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"4111111111111111\",\n  \"cardholderName\": \"Alice Smith\",\n  \"expiryDate\": \"08/25\",\n  \"cvv\": \"123\",\n  \"cardType\": \"CREDIT\",\n  \"creditLimit\": 10000.0,\n  \"currentBalance\": 2500.0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Create a sample credit card"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Debit Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"5555555555554444\",\n  \"cardholderName\": \"Bob Johnson\",\n  \"expiryDate\": \"11/24\",\n  \"cvv\": \"456\",\n  \"cardType\": \"DEBIT\",\n  \"creditLimit\": null,\n  \"currentBalance\": 5000.0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Create a sample debit card"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Prepaid Card",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"6011111111111117\",\n  \"cardholderName\": \"Carol Williams\",\n  \"expiryDate\": \"03/26\",\n  \"cvv\": \"789\",\n  \"cardType\": \"PREPAID\",\n  \"creditLimit\": null,\n  \"currentBalance\": 1000.0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Create a sample prepaid card"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Error Testing",
+			"item": [
+				{
+					"name": "Invalid Card Number",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"123\",\n  \"cardholderName\": \"Test User\",\n  \"expiryDate\": \"12/25\",\n  \"cvv\": \"123\",\n  \"cardType\": \"CREDIT\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Test validation with invalid card number"
+					},
+					"response": []
+				},
+				{
+					"name": "Missing Required Fields",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"1234567890123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards"
+							]
+						},
+						"description": "Test validation with missing required fields"
+					},
+					"response": []
+				},
+				{
+					"name": "Non-existent Card",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/cards/99999",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"cards",
+								"99999"
+							]
+						},
+						"description": "Test 404 response for non-existent card"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		}
+	]
+}
